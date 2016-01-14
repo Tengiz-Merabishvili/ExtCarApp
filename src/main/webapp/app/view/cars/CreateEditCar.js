@@ -12,7 +12,7 @@ Ext.define('CarApp.view.cars.CreateEditCar', {
 
     xtype: 'editCar',
     title: 'Create / Edit Car',
-
+    modal:true,
     layout: 'fit',
     plain: true,
 
@@ -49,11 +49,13 @@ Ext.define('CarApp.view.cars.CreateEditCar', {
                 fieldLabel: 'Year',
                 name: 'year',
                 bind: '{model.year}'
-            }, {
+            },
+                {
                 fieldLabel: 'Brand',
                 name: 'brand',
                 bind: '{model.brand}'
-            }, {
+            }
+                , {
                 fieldLabel: 'Model',
                 name: 'model',
                 bind: '{model.model}'

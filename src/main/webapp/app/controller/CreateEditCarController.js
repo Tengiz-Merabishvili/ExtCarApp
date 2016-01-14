@@ -13,6 +13,7 @@ Ext.define('CarApp.controller.CreateEditCarController', {
             store.add(model);
         }
 
+        store.sync();
         store.commitChanges();
         this.getView().close();
     },

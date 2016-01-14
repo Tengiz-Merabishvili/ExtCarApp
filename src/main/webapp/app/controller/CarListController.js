@@ -33,9 +33,10 @@ Ext.define('CarApp.controller.CarListController', {
         var store = Ext.StoreManager.lookup('Cars');
 
         var grid = this.getView();
-        var sm = grid.getSelectionModel();
+        var sm = grid.getSelectionModel().getSelection()[0];
 
-        store.remove(sm.getSelection());
+        store.remove(sm);
+        store.sync();
     },
 
     onSearch: function () {
@@ -43,14 +44,6 @@ Ext.define('CarApp.controller.CarListController', {
 
         var searchFieldValue = this.getView().down('#searchValue').getRawValue();
 
-        store.clearFilter();
-
-            store.filterBy(function (record) {
-                if ((record.get('number')).toLowerCase().indexOf(searchFieldValue.toLowerCase()) >= 0
-                    || (record.get('brand')).toLowerCase().indexOf(searchFieldValue.toLowerCase()) >= 0
-                    || (record.get('model')).toLowerCase().indexOf(searchFieldValue.toLowerCase()) >= 0) {
-                    return true;
-                }
-            });
+        store.load({searchString: searchFieldValue});
     }
 });
