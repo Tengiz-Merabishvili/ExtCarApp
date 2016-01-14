@@ -12,9 +12,16 @@ public class CarController {
     @Autowired
     MockDao dao;
 
+
+    //TODO - Implement server side search
+//    @RequestMapping(value = "/cars", method = RequestMethod.GET)
+//    public Collection<Car> searchCars(@RequestParam String searchString) {
+//        return dao.search(searchString);
+//    }
+
     @RequestMapping(value = "/cars", method = RequestMethod.GET)
-    public Collection<Car> getCars(@RequestParam String searchString) {
-        return dao.search(searchString);
+    public Collection<Car> getCars() {
+        return dao.getCars();
     }
 
     @RequestMapping(value = "/cars", method = RequestMethod.POST)

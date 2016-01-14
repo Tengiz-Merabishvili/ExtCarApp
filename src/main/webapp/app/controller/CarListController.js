@@ -44,6 +44,16 @@ Ext.define('CarApp.controller.CarListController', {
 
         var searchFieldValue = this.getView().down('#searchValue').getRawValue();
 
-        store.load({searchString: searchFieldValue});
+        //store.load({searchString: searchFieldValue});
+
+        store.clearFilter();
+
+        store.filterBy(function (record) {
+            if ((record.get('number')).toLowerCase().indexOf(searchFieldValue.toLowerCase()) >= 0
+                || (record.get('brand')).toLowerCase().indexOf(searchFieldValue.toLowerCase()) >= 0
+                || (record.get('model')).toLowerCase().indexOf(searchFieldValue.toLowerCase()) >= 0) {
+                return true;
+            }
+        });
     }
 });

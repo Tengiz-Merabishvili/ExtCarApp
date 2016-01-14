@@ -12,7 +12,7 @@ Ext.define('CarApp.view.cars.CreateEditCar', {
 
     xtype: 'editCar',
     title: 'Create / Edit Car',
-    modal:true,
+    modal: true,
     layout: 'fit',
     plain: true,
 
@@ -40,7 +40,14 @@ Ext.define('CarApp.view.cars.CreateEditCar', {
             items: [{
                 fieldLabel: 'Number',
                 name: 'number',
-                bind: '{model.number}'
+                bind: '{model.number}',
+                ////TODO - create a separate file for validators
+                validator: function (v) {
+                    if (v === "") {
+                        return "Number cannot be empty!";
+                    }
+                    return true;
+                }
             }, {
                 fieldLabel: 'Colour',
                 name: 'colour',
@@ -48,18 +55,27 @@ Ext.define('CarApp.view.cars.CreateEditCar', {
             }, {
                 fieldLabel: 'Year',
                 name: 'year',
-                bind: '{model.year}'
+                bind: '{model.year}',
+                //TODO - create a separate file for validators
+                validator: function (v) {
+                    if (!isNaN(parseFloat(v)) && isFinite(v)) {
+                        if (v < 1900 || v > 2016) return "Year must be between 1900 and 2016";
+                        return true;
+                    }
+                    if (v === "") return "Year cannot be empty!";
+                    return "Year must be numeric!";
+                }
             },
                 {
-                fieldLabel: 'Brand',
-                name: 'brand',
-                bind: '{model.brand}'
-            }
+                    fieldLabel: 'Brand',
+                    name: 'brand',
+                    bind: '{model.brand}'
+                }
                 , {
-                fieldLabel: 'Model',
-                name: 'model',
-                bind: '{model.model}'
-            }]
+                    fieldLabel: 'Model',
+                    name: 'model',
+                    bind: '{model.model}'
+                }]
         }],
 
     buttons: [{

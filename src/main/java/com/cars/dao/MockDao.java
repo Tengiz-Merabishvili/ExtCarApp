@@ -16,8 +16,9 @@ public class MockDao {
     public MockDao() {
         carList = new ArrayList<>();
         carList.add(new Car(UUID.randomUUID().toString(), "Black", "CRV", "Honda", "AA-111-AA", 1990));
-        carList.add(new Car(UUID.randomUUID().toString(), "White", "CRV", "Honda", "BB-222-BB", 1995));
-        carList.add(new Car(UUID.randomUUID().toString(), "Red", "CRV", "Honda", "CC-333-CC", 1995));
+        carList.add(new Car(UUID.randomUUID().toString(), "White", "CLK", "Mercedes", "BB-222-BB", 1995));
+        carList.add(new Car(UUID.randomUUID().toString(), "Red", "300", "BMW", "CC-333-CC", 1993));
+        carList.add(new Car(UUID.randomUUID().toString(), "Blue", "Lancer", "BMitsubishi", "DD-444-DD", 1993));
     }
 
     public Collection<Car> getCars() {
@@ -40,9 +41,9 @@ public class MockDao {
         }
 
         return carList.stream().filter(c ->
-                compareIgnoreCase(searchString, c.getBrand()) ||
-                compareIgnoreCase(searchString, c.getModel()) ||
-                compareIgnoreCase(searchString, c.getNumber())).collect(Collectors.toList());
+                        compareIgnoreCase(searchString, c.getBrand()) ||
+                        compareIgnoreCase(searchString, c.getModel()) ||
+                        compareIgnoreCase(searchString, c.getNumber())).collect(Collectors.toList());
     }
 
     private boolean compareIgnoreCase(String s, Object o) {

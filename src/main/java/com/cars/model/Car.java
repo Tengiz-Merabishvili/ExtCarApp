@@ -89,7 +89,6 @@ public class Car {
         Car car = (Car) o;
 
         return id != null ? id.equals(car.id) : car.id == null;
-
     }
 
     @Override
